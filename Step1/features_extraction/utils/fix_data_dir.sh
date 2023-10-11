@@ -46,6 +46,11 @@ function check_sorted {
   file=$1
   sort -k1,1 -u <$file >$file.tmp
   if ! cmp -s $file $file.tmp; then
+    echo "original"
+    cat $file
+    echo "----------------------------------------------------------"
+    cat $file.tmp
+    echo "______________end________________"
     echo "$0: file $1 is not in sorted order or not unique, sorting it"
     mv $file.tmp $file
   else
@@ -136,7 +141,8 @@ function filter_speakers {
 function filter_utts {
   cat $data/utt2spk | awk '{print $1}' > $tmpdir/utts
 
-  ! cat $data/utt2spk | sort | cmp - $data/utt2spk && \
+  ! cat $data/utt2spk | sort | cmp - $data/utt2spk && cat - && \
+
     echo "utt2spk is not in sorted order (fix this yourself)" && exit 1;
 
   ! cat $data/utt2spk | sort -k2 | cmp - $data/utt2spk && \
