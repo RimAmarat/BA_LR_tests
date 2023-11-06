@@ -27,14 +27,14 @@ Exemple:
 # Parse command-line options :
 . utils/parse_options.sh
 
-# Create the file path.sh need by all the kaldi scripts :
+# Create the file kaldi_path.sh need by all the kaldi scripts :
 echo "export KALDI_ROOT=$kaldi_root
 export PATH=\$PWD/utils/:\$KALDI_ROOT/tools/openfst/bin:\$KALDI_ROOT/tools/sph2pipe_v2.5:\$PWD:\$PATH
 [ ! -f \$KALDI_ROOT/tools/config/common_path.sh ] && echo >&2 \"The standard file \$KALDI_ROOT/tools/config/common_path.sh is not present -> Exit!\" && exit 1
 . \$KALDI_ROOT/tools/config/common_path.sh
-export LC_ALL=C" > path.sh
-# source path.sh :
-. ./path.sh
+export LC_ALL=C" > kaldi_path.sh
+# source kaldi_path.sh :
+. kaldi_path.sh
 
 # make_fbank  [options] <data-dir> [<log-dir> [<fbank-dir>] ]
 # Generates the filter banks
