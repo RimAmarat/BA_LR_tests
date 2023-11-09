@@ -46,11 +46,11 @@ function check_sorted {
   file=$1
   sort -k1,1 -u <$file >$file.tmp
   if ! cmp -s $file $file.tmp; then
-    echo "original"
-    cat $file
-    echo "----------------------------------------------------------"
-    cat $file.tmp
-    echo "______________end________________"
+    #echo "original"
+    #cat $file
+    #echo "----------------------------------------------------------"
+    #cat $file.tmp
+    #echo "______________end________________"
     echo "$0: file $1 is not in sorted order or not unique, sorting it"
     mv $file.tmp $file
   else
