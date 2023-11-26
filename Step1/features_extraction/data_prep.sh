@@ -13,14 +13,22 @@ output_file1="utt2spk"
 # Output file for <utt_id> <file_name>
 output_file2="wav.scp"
 
+data_path="/users/ramarat/BA_LR_tests/Step1/features_extraction/TEST_FILES/"
 # Path to input files
-cd TEST_FILES
+cd $data_path
 
-#touch '/users/ramarat/BA_LR_tests/Step1/features_extraction/TEST_FILES/'$output_file1
-#touch '/users/ramarat/BA_LR_tests/Step1/features_extraction/TEST_FILES/'$output_file2
+
+rm $data_path""wav.scp
+rm $data_path""utt2spk
+rm -rf $data_path.backup | true
+rm -rf /users/ramarat/BA_LR_tests/Step1/features_extraction/out_folder/* | true
+
+touch $data_path$output_file1
+touch $data_path$output_file2
 # empty config files
 #echo > "$output_file1"
 #echo > "$output_file2"
+
 
 # Loop through all the wav files in the folder
 for file in *.wav; do
@@ -34,7 +42,7 @@ for file in *.wav; do
     echo "$bare_file $spk_id" >> "$output_file1"
 
     # Append <utt_id> <file_name> to output_file2
-    echo "$utt_id $file" >> "$output_file2"
+    echo "$bare_file $data_path$file" >> "$output_file2"
 done
 
 echo "Mapping files created:"
